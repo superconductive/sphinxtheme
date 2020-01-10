@@ -72,7 +72,8 @@
 {%- block header %}
 {# Outer wrapper for pushing the footer to the bottom #}
 <div id="container">
-    {# Red Mega Menu #}
+
+    {# Header #}
     <header class="nav-down">
         <div class="container-fluid hidden-xs hidden-sm">
             <div class="row">
@@ -86,19 +87,12 @@
                 <div class="col-sm-9 col-md-9">
                     <nav class="navbar-right">
                         <ul class="menu">
-                            <li class="first">
-                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
-                                <ul class="submenu">
-                                    {% include 'menu/documentation.html' %}
-                                </ul>
-                            </li>
+                            <li><a href="https://docs.greatexpectations.io">Docs</a></li>
+                            <li><a href="https://greatexpectations.io/blog">Blog</a></li>
+                            <li><a href="https://greatexpectations.io/consulting">Consulting</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Community</a></li>
 
-                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
-                            <li><a href="https://swag.cakephp.org">Swag</a></li>
-                            <li><a href="https://cakephp.org/pages/road_trip">Road Trip</a></li>
-                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
-
-                            <li>
+                            <!-- <li>
                                 <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
                                 <div class="megamenu full">
                                     <div class="row">
@@ -114,7 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
                     </nav>
                 </div>
@@ -147,115 +141,6 @@
             </div>
         </div>
 
-        {# Grey site bar #}
-        <section id="nav-cook" class="hidden-xs hidden-sm">
-            <div class="container-fluid ">
-                <div class="row ">
-                    <div class="col-md-12 back-book">
-                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
-                            <h2>
-                                <a href="{{ pathto(master_doc) }}">
-                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
-                                    {{ project }} {{ version }} {{ version_name }} <strong>Cookbook</strong>
-                                </a>
-                            </h2>
-                        </div>
-
-                        <div class="col-md-4 hidden-sm">
-                            <form class="search" action="{{ pathto('search') }}" method="get">
-                                <input type="hidden" name="check_keywords" value="yes" />
-                                <input type="hidden" name="area" value="default" />
-
-                                <div class="col-md-10 p0">
-                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
-                                </div>
-                                <div class="col-md-2 p0 search-cook">
-                                    <button type="submit">
-                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        {# Language and version pickers #}
-                        <div class="col-md-3">
-                            <div class="col-md-6 p0">
-                                <div class="col-md-7 t-language p0">
-                                    <h6>Language:</h6>
-                                </div>
-                                <div class="col-md-5 p0">
-                                    <ul class="nav navbar-nav">
-                                        <li class="dropdown">
-                                            {% for lang in languages %}
-                                                {%- if lang == language -%}
-                                                <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
-                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
-                                                        {{ short_lang }}
-                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
-                                                    </a>
-                                                {%- endif -%}
-                                            {% endfor %}
-                                            <ul class="dropdown-menu">
-                                            {% for lang in languages %}
-                                                <li>
-                                                    {%- if lang == language -%}
-                                                    {# Do nothing, we print the active one above #}
-                                                    {%- elif has_lang(lang, pagename) -%}
-                                                    <a href="{{ lang_link(lang, pagename) }}">{{ '%.2s'|format(lang) }}</a>
-                                                    {%- else -%}
-                                                    <span class="disabled">{{ '%.2s'|format(lang) }}</span>
-                                                    {%- endif -%}
-                                                </li>
-                                            {% endfor %}
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 p0">
-                                <div class="col-md-7 t-language p0">
-                                    <h6>Version:</h6>
-                                </div>
-                                <div class="col-md-5 p0">
-                                    <ul class="nav navbar-nav">
-                                        <li class="dropdown">
-                                            {% for item in version_list if 'current' in item and item['current'] %}
-                                                <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ item['name'] }} <i class="fa fa-menu-en fa-chevron-down"></i></a>
-                                            {% endfor %}
-                                            <ul class="dropdown-menu">
-                                                {% for item in version_list %}
-                                                    <li><a href="https://book.cakephp.org/{{ item['number'] }}/{{ short_lang }}">
-                                                        {{ item['title'] }}
-                                                    </a></li>
-                                                {% endfor %}
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            {% if 'next' in version %}
-                <p class="edge-warning">
-                    This document is for CakePHP's development version, which can be significantly different 
-                    from previous releases.
-                    <br>You may want to read
-                    <a href="http://book.cakephp.org">current stable release documentation</a> instead.
-                </p>
-            {% endif %}
-            {% if is_prerelease %}
-                <p class="edge-warning">
-                    This document is for a development version, which can be significantly different
-                    from stable releases.
-                </p>
-            {% endif %}
-        </section>
-    </header>
-
     {# Responsive grey bar navigation. This is outside of header so it scrolls with the page. #}
     <section class="nav-btn visible-sm visible-xs">
         <div class="container">
@@ -285,6 +170,8 @@
             </div>
         </div>
     </div>
+    </header>
+</div>
 {% endblock -%}
 
 {%- block content %}

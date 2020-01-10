@@ -444,7 +444,7 @@ iframe {
   text-transform: capitalize;
   font-weight: 400;
   display: inline-block;
-  color: #fff;
+  color: #506690;
   position: relative;
   z-index: 10;
   -webkit-transition: all 0.2s ease-out;
@@ -1847,7 +1847,7 @@ blockquote {
 }
 
 header {
-  background: #0f0; /* Header color */
+  background: #fff; /* Header color */
   position: fixed;
   top: 0;
   transition: top 0.2s ease-in-out;
