@@ -1847,7 +1847,7 @@ blockquote {
 }
 
 header {
-  background: #d33c44; /* Header color */
+  background: #0f0; /* Header color */
   position: fixed;
   top: 0;
   transition: top 0.2s ease-in-out;
